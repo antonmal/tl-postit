@@ -33,3 +33,7 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+# Ignore system files
+.DS_Store
+.ruby_version

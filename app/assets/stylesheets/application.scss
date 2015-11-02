@@ -12,9 +12,9 @@
  *= require_tree .
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
- .container {
+.container {
   margin-left: 135px
 }
 
@@ -42,3 +42,7 @@ div.comment_votes {
   padding: 10px;
 }
 
+.post-details {
+  font-style: italic;
+  color: #aaa;
+}

@@ -1,3 +1,22 @@
-<h3>Welcome!</h3>
+<div class="container">
+  <span class="lead">Recent posts:</span>
+  <hr />
 
-<p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="span8 well">
+        <p>
+          <% post.categories.each do |category| %>
+            <%= link_to category.name, '#', class: 'badge' %>
+          <% end %>
+        </p>
+        <h3><%= link_to post.title, post.url %></h3>
+        <p><%= post.description %></p>
+        <p class="post-details">
+          <%= "created by #{post.creator.username} at #{post.updated_at.to_time.strftime('%b %d %H:%M')}" %>
+        </p>
+        <p><%= link_to "#{post.comments.size} comments", post, class: 'btn btn-success' %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
