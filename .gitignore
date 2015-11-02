@@ -36,4 +36,4 @@ bower.json
 
 # Ignore system files
 .DS_Store
-.ruby_version
+.ruby-version
