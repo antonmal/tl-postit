@@ -1,15 +1,10 @@
 <div class="container">
-  <span class="lead">Recent posts:</span>
-  <hr />
+  <%= render 'shared/content_title', title: 'Recent posts:' %>
 
   <% @posts.each do |post| %>
     <div class="row">
       <div class="span8 well">
-        <p>
-          <% post.categories.each do |category| %>
-            <%= link_to category.name, '#', class: 'badge' %>
-          <% end %>
-        </p>
+        <p><%= render post.categories %></p>
         <h3><%= link_to post.title, post.url %></h3>
         <p><%= post.description %></p>
         <p class="post-details">
