@@ -1,0 +1,22 @@
+<% if @category.errors.any? %>
+  <div class="alert alert-error">
+    <h5>There were errors in the form:</h5>
+    <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @category do |f| %>
+  <div class="controls-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="controls-group">
+    <%= f.submit(@category.new_record? ? 'Create' : 'Update', class: 'btn btn-success') %>
+  </div>
+<% end %>

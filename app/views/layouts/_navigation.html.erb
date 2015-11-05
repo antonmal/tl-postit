@@ -2,7 +2,28 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'New post', new_post_path %>
-  </li>
 </ul>
+
+<div class="nav nav-group">
+  <div class="dropdown">
+    <%= link_to '#', class: 'dropdown-toggle btn btn-small btn-default', 'data-toggle' => 'dropdown' do %>
+      Categories <span class="caret"></span>
+    <% end %>
+    <ul class="dropdown-menu">
+      <% @all_categories.each do |category| %>
+        <li><%= link_to category.name, category %></li>
+      <% end %>
+      <li class="divider"></li>
+      <li>
+        <%= link_to new_category_path do %>
+          <i class='icon-plus'></i> 
+          New category
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="nav">
+  <%= link_to 'New post', new_post_path, class: 'btn btn-success btn-small' %>
+</div>

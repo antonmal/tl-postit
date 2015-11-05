@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_categories
 
   def index
     @posts = Post.all order: 'updated_at DESC'
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'New post saved successfully.'
       redirect_to posts_path
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -28,11 +29,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.save
+    if @post.update(post_params)
       flash[:notice] = 'Post updated successfully.'
       redirect_to @post
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -40,6 +41,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_categories
+    @all_categories = Category.all order: 'name'
   end
 
   def post_params
