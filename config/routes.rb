@@ -10,5 +10,7 @@ PostitTemplate::Application.routes.draw do
   # put 'posts/:id', to: 'posts#update'
   # destroy 'posts/:id', to: 'posts#destroy'
 
-  resources :posts, except: [:destroy]
+  resources :posts, except: [:destroy] do
+    resources :comments, only: [:create, :show]
+  end
 end

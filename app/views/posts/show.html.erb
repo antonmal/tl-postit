@@ -7,5 +7,6 @@
       <p><%= @post.description %></p>
     </div>
   </div>
-  <%= link_to 'Back to all posts', posts_path, class: 'btn btn-success' %>
+  <%= link_to 'Edit post', edit_post_path(@post), class: 'btn btn-warning' %>
+  <%= link_to 'Back to all posts', posts_path, class: 'btn btn-default' %>
 </div>
