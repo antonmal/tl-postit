@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories
 
   def index
     @categories = Category.all order: 'name DESC'
@@ -56,9 +55,5 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
-  end
-
-  def set_categories
-    @all_categories = Category.all order: 'name'
   end
 end

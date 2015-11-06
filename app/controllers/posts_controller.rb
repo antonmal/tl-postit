@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :set_categories
 
   def index
     @posts = Post.all order: 'updated_at DESC'
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
@@ -41,10 +41,6 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def set_categories
-    @all_categories = Category.all order: 'name'
   end
 
   def post_params

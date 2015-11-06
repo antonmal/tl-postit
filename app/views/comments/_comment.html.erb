@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="span6 well">
+    <p>
+      <%= comment.body %>
+    </p>
+    <p class="post-details">
+      comment made 
+      <% if comment.creator %>
+        <%= "by #{comment.creator.username} " %>
+      <% end %>
+      <%= "on #{comment.updated_at.to_time.strftime('%b %d %H:%M')}" %>
+    </p>
+  </div>
+</div>

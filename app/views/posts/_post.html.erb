@@ -1,14 +1,14 @@
 <div class="row">
   <div class="span6 well">
     <p><%= render post.categories %></p>
-    <h3><%= link_to post.title, post.url %></h3>
+    <h3><%= link_to post.title, full_url(post.url) %></h3>
     <p><%= post.description %></p>
     <p class="post-details">
-      created
+      <small>created </small>
       <% if post.creator %>
-        <%= "by #{post.creator.username} " %>
+        <%= "<small>by</small> #{post.creator.username} ".html_safe %>
       <% end %>
-      <%= "at #{post.updated_at.to_time.strftime('%b %d %H:%M')}" %>
+      <%= "<small>on #{post.updated_at.to_time.strftime('%b %d %H:%M')}</small>".html_safe %>
     </p>
     <p>
       <%= link_to "#{post.comments.size} comments", post, class: 'btn btn-success' %>

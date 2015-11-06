@@ -3,11 +3,31 @@
 <div class="row">
   <div class="well span6">
     <p><%= render @post.categories %></p>
-    <p><%= link_to @post.url %></p>
+    <p><%= link_to full_url(@post.url) %></p>
     <p><%= @post.description %></p>
-  </div>
-  <div class="span6">
     <%= link_to 'Edit post', edit_post_path(@post), class: 'btn btn-warning' %>
     <%= link_to 'Back to all posts', posts_path, class: 'btn btn-default' %>
   </div>
 </div>
+
+<span class="lead"><small>Create a comment:</small></span>
+<%= render 'shared/errors', object: @comment %>
+
+<div class="row">
+  <%= form_for [@post, @comment] do |f| %>
+    <div class="well span6">
+      <div class="control-group">
+        <%= f.label :body, 'New comment' %>
+        <%= f.text_area :body, class: 'span6'%>
+      </div>
+      <div class="control-group">
+        <%= f.submit 'Add', class: 'btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @post.comments(true).any? %>
+  <span class="lead"><small>Comments for this post:</small></span>
+  <%= render @post.comments.all order: 'updated_at DESC' %>
+<% end %>

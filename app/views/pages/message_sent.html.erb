@@ -1,0 +1,14 @@
+<%= render 'shared/content_title', title: 'Message sent' %>
+
+<div class="well">
+  <strong>From:</strong>
+  <p><%= params[:name] %></p>
+  <strong>Email:</strong>
+  <p><%= params[:email] %></p>
+  <strong>Website:</strong>
+  <p><%= params[:url] %></p>
+  <strong>Message:</strong>
+  <p><%= params[:message] %></p>
+</div>
+
+<%= link_to "Back to Contacts", contacts_path, class: 'btn btn-primary' %>
