@@ -3,7 +3,11 @@ module ApplicationHelper
     url.starts_with?('http://') ? url : "http://#{url}"
   end
 
-  def categories_list
+  def short_date(date_str)
+    date_str.to_time.strftime('%b %d, %H:%M')
+  end
+
+  def category_list
     Category.all order: 'name'
   end
 end

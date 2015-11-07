@@ -54,3 +54,12 @@ div.comment_votes {
 .spacer {
   margin-top: 20px;
 }
+
+.inline-checkboxes input[type="checkbox"] {
+  display: inline-block;
+}
+
+.inline-checkboxes input[type="checkbox"] + label {
+  display: inline-block;
+  margin: 0 15px 0 5px;
+}

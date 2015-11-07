@@ -16,11 +16,23 @@
         <%= f.text_area :description, rows: 5, class: 'span6' %>
       </div>
       <div class="control-group">
-        <select multiple name="comments" class="span6">
-          <option value='1'>Option 1</option>
-          <option value='2'>Option 2</option>
-          <option value='3'>Option 3</option>
-        </select>
+        <%= f.label :category_ids, 'Choose categories for the post:' %>
+
+        <!-- <%= f.select :category_ids, category_list.collect { |c| [ c.name, c.id ] }, {}, { multiple: true, autofocus: true, class: 'span6' } %> -->
+
+        <!-- <div class="inline-checkboxes">
+          <%= f.collection_check_boxes :category_ids, category_list, :id, :name %>
+        </div> -->
+
+        <%= f.collection_check_boxes :category_ids, category_list, :id, :name do |cb| %>
+          <%= cb.label class: 'checkbox inline' do %>
+            <%= cb.check_box %>
+            <%= cb.text %>
+            <!-- <%= cb.object.name %> -->
+            <!-- <%= cb.object.created_at %> -->
+          <% end %>
+        <% end %>
+
       </div>
       <div class="control-group">
         <%= f.submit(@post.new_record? ? 'Create' : 'Update' , class: 'btn btn-success') %>
