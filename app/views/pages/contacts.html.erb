@@ -4,19 +4,19 @@
   <div class="well span6">
     <%= form_tag do %>
       <div class="control-group">
-        <%= label_tag :name, 'Your name *' %>
+        <%= label_tag :name, 'Your name' %>
         <%= text_field_tag :name, params[:name] %>
       </div>
       <div class="control-group">
-        <%= label_tag :email, 'Your email *' %>
+        <%= label_tag :email, 'Your email' %>
         <%= email_field_tag :email, params[:email] %>
       </div>
       <div class="control-group">
-        <%= label_tag :url, 'Your website' %>
+        <%= label_tag :url, 'Your website (optional)' %>
         <%= url_field_tag :url, params[:url] %>
       </div>
       <div class="control-group">
-        <%= label_tag :message, 'Your message *' %>
+        <%= label_tag :message, 'Your message' %>
         <%= text_area_tag :message, params[:message] %>
       </div>
       <div class="control-group">

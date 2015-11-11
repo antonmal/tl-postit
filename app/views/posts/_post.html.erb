@@ -8,7 +8,7 @@
       <% if post.creator %>
         <%= "<small>by</small> #{post.creator.username} ".html_safe %>
       <% end %>
-      <%= "<small>on #{post.updated_at.to_time.strftime('%b %d %H:%M')}</small>".html_safe %>
+      <%= "<small>on #{short_date(post.updated_at)}</small>".html_safe %>
     </p>
     <p>
       <%= link_to "#{post.comments.size} comments", post, class: 'btn btn-success' %>

@@ -4,11 +4,11 @@
       <%= comment.body %>
     </p>
     <p class="post-details">
-      comment made 
+      comment made
       <% if comment.creator %>
         <%= "by #{comment.creator.username} " %>
       <% end %>
-      <%= "on #{comment.updated_at.to_time.strftime('%b %d %H:%M')}" %>
+      <%= "on #{short_date(comment.updated_at)}" %>
     </p>
   </div>
 </div>

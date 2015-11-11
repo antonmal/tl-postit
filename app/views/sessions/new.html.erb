@@ -1,0 +1,11 @@
+<%= render 'shared/content_title', title: 'Log In' %>
+
+<%= form_tag do %>
+  <%= label_tag :username %>
+  <%= text_field_tag :username, params[:username] || '' %>
+  <br />
+  <%= label_tag :password %>
+  <%= password_field_tag :password, params[:password] || '' %>
+  <br />
+  <%= submit_tag 'Log In' %>
+<% end %>
