@@ -1,14 +1,24 @@
+<% show_post_title ||= false %>
+
 <div class="row">
   <div class="span6 well">
     <p>
       <%= comment.body %>
     </p>
+
     <p class="post-details">
-      comment made
-      <% if comment.creator %>
-        <%= "by #{comment.creator.username} " %>
+      <% if show_post_title %>
+        on
+        <%= link_to comment.post.title, comment.post %>
+        <br />
       <% end %>
-      <%= "on #{short_date(comment.updated_at)}" %>
+      made
+      <% if comment.creator %>
+        by
+        <%= link_to comment.creator.username, comment.creator %>
+      <% end %>
+      on
+      <%= short_date(comment.updated_at) %>
     </p>
   </div>
 </div>

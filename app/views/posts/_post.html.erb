@@ -6,7 +6,8 @@
     <p class="post-details">
       <small>created </small>
       <% if post.creator %>
-        <%= "<small>by</small> #{post.creator.username} ".html_safe %>
+        <small>by</small>
+        <%= link_to post.creator.username, post.creator %>
       <% end %>
       <%= "<small>on #{short_date(post.updated_at)}</small>".html_safe %>
     </p>

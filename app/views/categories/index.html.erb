@@ -1,5 +1,3 @@
 <%= render 'shared/content_title', title: 'All categories:' %>
 
-<% @categories.each do |category| %>
-  <%= link_to category.name, category, class: 'badge badge-list-item' %>
-<% end %>
+<%= render @categories %>

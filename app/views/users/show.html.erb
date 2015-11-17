@@ -1,0 +1,20 @@
+<%= render 'shared/content_title', title: "<small>Activity of:</small> #{@user.username}".html_safe %>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#posts" data-toggle="tab">Posts (<%= @user.posts.size %>)</a></li>
+  <li><a href="#comments" data-toggle="tab">Comments (<%= @user.comments.size %>)</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="posts" class="tab-pane active">
+    <% if @user.posts.any? %>
+      <%= render @user.posts %>
+    <% end %>
+  </div>
+
+  <div id="comments" class="tab-pane">
+    <% if @user.comments.any? %>
+      <%= render @user.comments, show_post_title: true %>
+    <% end %>
+  </div>
+</div>

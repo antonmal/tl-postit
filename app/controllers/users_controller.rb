@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  before_action :current_user!, only: [:edit, :update]
+
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -8,9 +14,9 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Your account was created successfully.'
+      redirect_to @user, notice: 'Your account was created successfully.'
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -22,10 +28,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = 'Your profile was updated successfully.'
-      redirect_to root_path
+      redirect_to @user, notice: 'Your profile was updated successfully.'
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -33,5 +38,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def current_user!
+    unless params[:id] == current_user
+      redirect_to current_user, alert: "You cannot edit another user's profile"
+    end
   end
 end
