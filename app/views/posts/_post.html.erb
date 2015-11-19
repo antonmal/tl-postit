@@ -5,7 +5,7 @@
         <i class="icon-arrow-up"></i>
       <% end %>
     <% end %>
-    <div id="post-<%= post.id %>-votes">
+    <div id="post-<%= post.slug %>-votes">
       <%= post.votes_count %> votes
     </div>
     <% if logged_in? %>

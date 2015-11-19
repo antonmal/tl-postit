@@ -1,5 +1,5 @@
 <% if @vote.valid? %>
-  $('#post-<%= @post.id %>-votes').html('<%= @post.votes_count %> votes');
+  $('#post-<%= @post.slug %>-votes').html('<%= @post.votes_count %> votes');
   blinkVote('success');
 <% else %>
   showVoteError();
@@ -7,15 +7,15 @@
 <% end %>
 
 function blinkVote(result) {
-  $('.well').has('#post-<%= @post.id %>-votes').addClass('vote-'+result);
+  $('.well').has('#post-<%= @post.slug %>-votes').addClass('vote-'+result);
   setTimeout(function(){
-    $('.well').has('#post-<%= @post.id %>-votes').removeClass('vote-'+result);
+    $('.well').has('#post-<%= @post.slug %>-votes').removeClass('vote-'+result);
   }, 600 );
 }
 
 function showVoteError() {
   $('#vote-error-alert').remove();
-  $('.well').has('#post-<%= @post.id %>-votes').parent().before(voteErrorDiv());
+  $('.well').has('#post-<%= @post.slug %>-votes').parent().before(voteErrorDiv());
 }
 
 function voteErrorDiv() {
