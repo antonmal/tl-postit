@@ -8,7 +8,11 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 5 }
   validates :url, presence: true, uniqueness: true
 
-  before_save :generate_slug
+  before_save :generate_slug, on: :create
+
+  def to_param
+    self.slug
+  end
 
   def votes_count
     up_votes - down_votes

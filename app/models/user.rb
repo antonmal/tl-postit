@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
   before_save :generate_slug
 
+  def to_param
+    self.slug
+  end
+
   private
 
   def validate_password?

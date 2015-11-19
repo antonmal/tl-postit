@@ -4,7 +4,11 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, length: { minimum: 5 }, uniqueness: true
 
-  before_save :generate_slug
+  before_save :generate_slug, on: create
+
+  def to_param
+    self.slug
+  end
 
   private
 
