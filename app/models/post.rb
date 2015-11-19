@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 5 }
   validates :url, presence: true, uniqueness: true
 
+  before_save :generate_slug
+
   def votes_count
     up_votes - down_votes
   end
@@ -18,5 +20,14 @@ class Post < ActiveRecord::Base
 
   def down_votes
     self.votes.where(vote: false).size
+  end
+
+  def generate_slug
+    slug = self.title.gsub(/[^\w]|[\_]/, '-').downcase
+    i = 1
+    while !!Post.find_by(slug: slug) do
+      i == 1 ? slug += '-1' : slug = slug[0...-2] + "-#{i}"
+    end
+    self.slug = slug
   end
 end
