@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
               .gsub(/^[\-]+/, '').gsub(/[\-]+$/, '')
     i = 1
     while !!User.where.not(id: self.id).find_by(slug: slug) do
-      i == 1 ? slug += '-1' : slug = slug[0...-2] + "-#{i}"
+      i == 1 ? slug += '-1' : slug = slug.split('-')[0..-2].join('-') + "-#{i}"
       i += 1
     end
     self.slug = slug
