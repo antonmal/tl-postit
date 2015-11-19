@@ -1,5 +1,17 @@
-$('#post_<%= @post.id %>_votes').html('<%= @post.votes_count %> votes');
-$('.well').has('#post_<%= @post.id %>_votes').addClass('vote-<%= @vote_result %>');
-setTimeout(function(){
-  $('.well').has('#post_<%= @post.id %>_votes').removeClass('vote-<%= @vote_result %>');
-}, 600 );
+<% if @vote.valid? %>
+  $('#post-<%= @post.id %>-votes').html('<%= @post.votes_count %> votes');
+  blinkVote('success');
+<% else %>
+  $('#vote-error-alert').remove()
+  $('.well').has('#post-<%= @post.id %>-votes').parent().before(
+    '<div id="vote-error-alert" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>You can only vote once for this post.</div>'
+  );
+  blinkVote('error');
+<% end %>
+
+function blinkVote(result) {
+  $('.well').has('#post-<%= @post.id %>-votes').addClass('vote-'+result);
+  setTimeout(function(){
+    $('.well').has('#post-<%= @post.id %>-votes').removeClass('vote-'+result);
+  }, 600 );
+}
