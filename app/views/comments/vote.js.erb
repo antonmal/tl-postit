@@ -1,0 +1,23 @@
+<% if @vote.valid? %>
+  $('#comment-<%= @comment.id %>-votes').html('<%= @comment.votes_count %> votes');
+  blinkVote('success');
+<% else %>
+  showVoteError();
+  blinkVote('error');
+<% end %>
+
+function blinkVote(result) {
+  $('.well').has('#comment-<%= @comment.id %>-votes').addClass('vote-'+result);
+  setTimeout(function(){
+    $('.well').has('#comment-<%= @comment.id %>-votes').removeClass('vote-'+result);
+  }, 600 );
+}
+
+function showVoteError() {
+  $('#vote-error-alert').remove();
+  $('.well').has('#comment-<%= @comment.id %>-votes').parent().before(voteErrorDiv());
+}
+
+function voteErrorDiv() {
+  return '<div id="vote-error-alert" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>You can only vote once for this comment.</div>';
+}

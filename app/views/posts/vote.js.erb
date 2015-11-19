@@ -2,10 +2,7 @@
   $('#post-<%= @post.id %>-votes').html('<%= @post.votes_count %> votes');
   blinkVote('success');
 <% else %>
-  $('#vote-error-alert').remove()
-  $('.well').has('#post-<%= @post.id %>-votes').parent().before(
-    '<div id="vote-error-alert" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>You can only vote once for this post.</div>'
-  );
+  showVoteError();
   blinkVote('error');
 <% end %>
 
@@ -14,4 +11,13 @@ function blinkVote(result) {
   setTimeout(function(){
     $('.well').has('#post-<%= @post.id %>-votes').removeClass('vote-'+result);
   }, 600 );
+}
+
+function showVoteError() {
+  $('#vote-error-alert').remove();
+  $('.well').has('#post-<%= @post.id %>-votes').parent().before(voteErrorDiv());
+}
+
+function voteErrorDiv() {
+  return '<div id="vote-error-alert" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>You can only vote once for this post.</div>';
 }
