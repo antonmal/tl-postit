@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 5 }
   validates :url, presence: true, uniqueness: true
 
-  before_save :generate_slug, on: :create
+  before_save :generate_slug!, on: :create
 
   def to_param
     self.slug
@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
     self.votes.where(vote: false).size
   end
 
-  def generate_slug
+  def generate_slug!
     slug = self.title.downcase
               .gsub(/\W|\_/, '-').gsub(/[\-]+/, '-')
               .gsub(/^[\-]+/, '').gsub(/[\-]+$/, '')

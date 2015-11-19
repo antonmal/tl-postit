@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 5 },
     if: :validate_password?
 
-  before_save :generate_slug
+  before_save :generate_slug!
 
   def to_param
     self.slug
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     new_record? || password.present?
   end
 
-  def generate_slug
+  def generate_slug!
     slug = self.username.downcase
               .gsub(/\W|\_/, '-').gsub(/[\-]+/, '-')
               .gsub(/^[\-]+/, '').gsub(/[\-]+$/, '')
