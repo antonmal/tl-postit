@@ -27,10 +27,13 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    slug = self.title.gsub(/[^\w]|[\_]/, '-').downcase
+    slug = self.title.downcase
+              .gsub(/\W|\_/, '-').gsub(/[\-]+/, '-')
+              .gsub(/^[\-]+/, '').gsub(/[\-]+$/, '')
     i = 1
-    while !!Post.find_by(slug: slug) do
+    while !!Post.where.not(id: self.id).find_by(slug: slug) do
       i == 1 ? slug += '-1' : slug = slug[0...-2] + "-#{i}"
+      i += 1
     end
     self.slug = slug
   end

@@ -19,10 +19,13 @@ class User < ActiveRecord::Base
   end
 
   def generate_slug
-    slug = self.username.gsub(/[^\w]|[\_]/, '-').downcase
+    slug = self.username.downcase
+              .gsub(/\W|\_/, '-').gsub(/[\-]+/, '-')
+              .gsub(/^[\-]+/, '').gsub(/[\-]+$/, '')
     i = 1
-    while !!User.find_by(slug: slug) do
+    while !!User.where.not(id: self.id).find_by(slug: slug) do
       i == 1 ? slug += '-1' : slug = slug[0...-2] + "-#{i}"
+      i += 1
     end
     self.slug = slug
   end

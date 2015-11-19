@@ -11,10 +11,13 @@ class Category < ActiveRecord::Base
   end
 
   def generate_slug
-    slug = self.name.gsub(/[^\w]|[\_]/, '-').downcase
+    slug = self.name.downcase
+              .gsub(/\W|\_/, '-').gsub(/[\-]+/, '-')
+              .gsub(/^[\-]+/, '').gsub(/[\-]+$/, '')
     i = 1
-    while !!Category.find_by(slug: slug) do
+    while !!Category.where.not(id: self.id).find_by(slug: slug) do
       i == 1 ? slug += '-1' : slug = slug[0...-2] + "-#{i}"
+      i += 1
     end
     self.slug = slug
   end
