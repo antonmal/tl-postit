@@ -10,8 +10,6 @@ class Category < ActiveRecord::Base
     self.slug
   end
 
-  private
-
   def generate_slug
     slug = self.name.gsub(/[^\w]|[\_]/, '-').downcase
     i = 1

@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
     self.slug
   end
 
-  private
-
   def validate_password?
     new_record? || password.present?
   end
