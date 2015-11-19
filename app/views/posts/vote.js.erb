@@ -1,0 +1,5 @@
+$('#post_<%= @post.id %>_votes').html('<%= @post.votes_count %> votes');
+$('.well').has('#post_<%= @post.id %>_votes').addClass('vote-<%= @vote_result %>');
+setTimeout(function(){
+  $('.well').has('#post_<%= @post.id %>_votes').removeClass('vote-<%= @vote_result %>');
+}, 600 );

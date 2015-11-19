@@ -63,3 +63,11 @@ div.comment_votes {
   display: inline-block;
   margin: 0 15px 0 5px;
 }
+
+.vote-error {
+  border-color: red;
+}
+
+.vote-success {
+  border-color: green;
+}
