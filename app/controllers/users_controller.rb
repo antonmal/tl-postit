@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :current_user!, only: [:edit, :update]
+  before_action :check_permissions, only: [:edit, :update]
 
   def show
   end
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password)
   end
 
-  def current_user!
-    unless params[:id] == current_user
+  def check_permissions
+    unless params[:id] == current_user || admin?
       redirect_to current_user, alert: "You cannot edit another user's profile"
     end
   end

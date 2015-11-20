@@ -15,7 +15,7 @@
       <% end %>
       <li class="divider"></li>
       <li><%= link_to 'Show all categories', categories_path %></li>
-      <% if logged_in? %>
+      <% if logged_in? && admin? %>
         <li>
           <%= link_to new_category_path do %>
             <i class='icon-plus'></i>

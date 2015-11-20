@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
+  before_action :check_permissions, only: [:edit, :update]
 
   def index
     @posts = Post.all.sort_by { |post| [-post.votes_count, -post.updated_at.to_i] }
@@ -62,5 +63,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :url, :description, category_ids: [])
+  end
+
+  def check_permissions
+    unless params[:id] == current_user || admin? || moderator?
+      redirect_to current_user, alert: "You cannot edit another user's profile"
+    end
   end
 end

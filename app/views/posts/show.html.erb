@@ -12,7 +12,7 @@
       <% end %>
       <%= "<small>on #{short_date(@post.created_at)}</small>".html_safe %>
     </p>
-    <% if logged_in? && @post.creator.id == current_user.id %>
+    <% if logged_in? && (@post.creator == current_user || admin? || moderator?) %>
       <%= link_to 'Edit post', edit_post_path(@post), class: 'btn btn-warning' %>
     <% end %>
     <%= link_to 'Back to all posts', posts_path, class: 'btn btn-default' %>

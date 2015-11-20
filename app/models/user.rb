@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Sluggable
-  
+
   has_many :posts
   has_many :comments
 

@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
 
   def index
     @categories = Category.all order: 'name DESC'
@@ -56,5 +56,11 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find_by(slug: params[:id])
+  end
+
+  def require_admin
+    unless admin?
+      redirect_to root_path, alert: 'You are not authorized to create or edit categories.'
+    end
   end
 end
