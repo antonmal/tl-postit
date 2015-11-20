@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless logged_in?
-      redirect_to root_path, alert: 'You must be logged in to do this'
+      please_login
     end
   end
 
@@ -25,5 +25,9 @@ class ApplicationController < ActionController::Base
 
   def moderator?
     current_user.role == 'moderator'
+  end
+
+  def please_login
+    redirect_to root_path, alert: "You need to be logged in to do this."
   end
 end

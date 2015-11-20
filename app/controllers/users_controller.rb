@@ -42,8 +42,10 @@ class UsersController < ApplicationController
   end
 
   def check_permissions
-    unless params[:id] == current_user || admin?
-      redirect_to current_user, alert: "You cannot edit another user's profile"
+    if !logged_in?
+      please_login
+    elsif @user == current_user || admin?
+      redirect_to current_user, alert: "You can only edit your own profile."
     end
   end
 end
