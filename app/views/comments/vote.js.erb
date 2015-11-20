@@ -1,3 +1,6 @@
+// clear alerts related to the previous votes
+$('#vote-error-alert').remove();
+
 <% if @vote.valid? %>
   $('#comment-<%= @comment.id %>-votes').html('<%= @comment.votes_count %> votes');
   blinkVote('success');
@@ -14,7 +17,6 @@ function blinkVote(result) {
 }
 
 function showVoteError() {
-  $('#vote-error-alert').remove();
   $('.well').has('#comment-<%= @comment.id %>-votes').parent().before(voteErrorDiv());
 }
 

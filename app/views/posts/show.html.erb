@@ -10,7 +10,7 @@
       <% if @post.creator %>
         <%= "<small>by</small> #{@post.creator.username} ".html_safe %>
       <% end %>
-      <%= "<small>on #{short_date(@post.updated_at)}</small>".html_safe %>
+      <%= "<small>on #{short_date(@post.created_at)}</small>".html_safe %>
     </p>
     <% if logged_in? && @post.creator.id == current_user.id %>
       <%= link_to 'Edit post', edit_post_path(@post), class: 'btn btn-warning' %>

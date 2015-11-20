@@ -24,7 +24,7 @@
         <small>by</small>
         <%= link_to post.creator.username, post.creator %>
       <% end %>
-      <%= "<small>on #{short_date(post.updated_at)}</small>".html_safe %>
+      <%= "<small>on #{short_date(post.created_at)}</small>".html_safe %>
     </p>
     <p>
       <%= link_to "#{post.comments.size} comments", post, class: 'btn btn-success' %>

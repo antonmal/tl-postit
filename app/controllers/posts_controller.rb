@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show]
 
   def index
-    @posts = Post.all.sort_by { |post| post.votes_count }.reverse
+    @posts = Post.all.sort_by { |post| [-post.votes_count, -post.updated_at.to_i] }
   end
 
   def show
