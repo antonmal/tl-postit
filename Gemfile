@@ -13,7 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'voteable_ant', '= 0.3.0'
+gem 'voteable_ant', path: '/Users/ANTON/dev/my_gems/voteable_ant'
 
 group :doc do
   gem 'sdoc', require: false
