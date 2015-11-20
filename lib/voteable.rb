@@ -2,14 +2,18 @@ module Voteable
   extend ActiveSupport::Concern
 
   included do
-
+    has_many :votes, as: :voteable
   end
 
-  class_methods do
-
+  def votes_count
+    up_votes - down_votes
   end
 
-  def instance_method
+  def up_votes
+    self.votes.where(vote: true).size
+  end
 
+  def down_votes
+    self.votes.where(vote: false).size
   end
 end
