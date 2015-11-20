@@ -66,8 +66,8 @@ class PostsController < ApplicationController
   end
 
   def check_permissions
-    unless params[:id] == current_user || admin? || moderator?
-      redirect_to current_user, alert: "You cannot edit another user's profile"
+    unless @post.creator == current_user || admin? || moderator?
+      redirect_to root_path, alert: "You can only edit your own posts."
     end
   end
 end
