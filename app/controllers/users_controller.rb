@@ -42,10 +42,12 @@ class UsersController < ApplicationController
   end
 
   def check_permissions
-    if !logged_in?
+    if logged_in?
+      unless @user == current_user || admin?
+        redirect_to current_user, alert: "You can only edit your own profile."
+      end
+    else
       please_login
-    elsif @user == current_user || admin?
-      redirect_to current_user, alert: "You can only edit your own profile."
     end
   end
 end

@@ -59,10 +59,12 @@ class CategoriesController < ApplicationController
   end
 
   def require_admin
-    if !logged_in?
+    if logged_in?
+      unless admin?
+        redirect_to root_path, alert: 'You are not authorized to create or edit categories.'
+      end
+    else
       please_login
-    elsif !admin?
-      redirect_to root_path, alert: 'You are not authorized to create or edit categories.'
     end
   end
 end

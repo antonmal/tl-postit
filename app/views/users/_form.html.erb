@@ -1,11 +1,18 @@
 <%= render 'shared/errors', object: @user %>
 
 <%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <br />
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br />
+
+  <div class="control-group">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div class="control-group">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="control-group">
+    <%= f.label :timezone %>
+    <%= f.time_zone_select :timezone, nil, default: config.time_zone %>
+  </div>
   <%= f.submit @user.new_record? ? 'Register' : 'Update', class: 'btn btn-success' %>
 <% end %>

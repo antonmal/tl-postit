@@ -66,10 +66,12 @@ class PostsController < ApplicationController
   end
 
   def check_permissions
-    if !logged_in?
+    if logged_in?
+      unless @post.creator == current_user || admin? || moderator?
+        redirect_to root_path, alert: "You can only edit your own posts."
+      end
+    else
       please_login
-    elsif @post.creator == current_user || admin? || moderator?
-      redirect_to root_path, alert: "You can only edit your own posts."
     end
   end
 end
