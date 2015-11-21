@@ -14,5 +14,9 @@
     <%= f.label :timezone %>
     <%= f.time_zone_select :timezone, nil, default: Time.zone.name %>
   </div>
+  <div class="contol-group">
+    <%= f.label :phone, 'You mobile phone number' %>
+    <%= f.telephone_field :phone %>
+  </div>
   <%= f.submit @user.new_record? ? 'Register' : 'Update', class: 'btn btn-success' %>
 <% end %>

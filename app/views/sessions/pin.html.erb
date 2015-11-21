@@ -1,0 +1,15 @@
+<%= render 'shared/content_title', title: 'Enter the PIN you received via sms:' %>
+
+<div class="row">
+  <div class="well span6">
+    <%= form_tag do %>
+      <div class="control-group">
+        <%= label_tag :pin, 'PIN number'%>
+        <%= text_field_tag :pin %>
+      </div>
+      <div class="contol-group">
+        <%= submit_tag 'Login', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
