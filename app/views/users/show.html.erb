@@ -1,5 +1,15 @@
 <%= render 'shared/content_title', title: "<small>Activity of:</small> #{@user.username}".html_safe %>
 
+<div class="well">
+  <dl>
+    <dt>User time zone:</dt>
+    <dd><%= @user.timezone || "#{Time.zone.name} [default]" %></dd>
+  </dl>
+  <% if logged_in? && (@user == current_user || admin?) %>
+    <%= link_to 'Edit profile', edit_user_path(@user), class: 'btn btn-warning' %>
+  <% end %>
+</div>
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#posts" data-toggle="tab">Posts (<%= @user.posts.size %>)</a></li>
   <li><a href="#comments" data-toggle="tab">Comments (<%= @user.comments.size %>)</a></li>

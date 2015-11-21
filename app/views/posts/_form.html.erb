@@ -17,19 +17,10 @@
       </div>
       <div class="control-group">
         <%= f.label :category_ids, 'Choose categories for the post:' %>
-
-        <!-- <%= f.select :category_ids, category_list.collect { |c| [ c.name, c.id ] }, {}, { multiple: true, autofocus: true, class: 'span6' } %> -->
-
-        <!-- <div class="inline-checkboxes">
-          <%= f.collection_check_boxes :category_ids, category_list, :id, :name %>
-        </div> -->
-
         <%= f.collection_check_boxes :category_ids, category_list, :id, :name do |cb| %>
           <%= cb.label class: 'checkbox inline' do %>
             <%= cb.check_box %>
             <%= cb.text %>
-            <!-- <%= cb.object.name %> -->
-            <!-- <%= cb.object.created_at %> -->
           <% end %>
         <% end %>
 

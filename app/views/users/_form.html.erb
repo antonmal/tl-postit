@@ -12,7 +12,7 @@
   </div>
   <div class="control-group">
     <%= f.label :timezone %>
-    <%= f.time_zone_select :timezone, nil, default: config.time_zone %>
+    <%= f.time_zone_select :timezone, nil, default: Time.zone.name %>
   </div>
   <%= f.submit @user.new_record? ? 'Register' : 'Update', class: 'btn btn-success' %>
 <% end %>
