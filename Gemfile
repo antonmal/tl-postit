@@ -8,7 +8,7 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 
 # My own gems
 gem 'voteable_ant', path: '/Users/ANTON/dev/my_gems/voteable_ant'
-gem 'sluggable_ant', '= 0.0.2'
+gem 'sluggable_ant', path: '/Users/ANTON/dev/my_gems/sluggable_ant'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
