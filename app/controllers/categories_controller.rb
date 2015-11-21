@@ -4,9 +4,20 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all order: 'name DESC'
+
+    respond_to do |format|
+      format.json { render json: @categories }
+      format.xml { render xml: @categories }
+      format.html
+    end
   end
 
   def show
+    respond_to do |format|
+      format.json { render json: @category }
+      format.xml { render xml: @category }
+      format.html
+    end
   end
 
   def new

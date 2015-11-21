@@ -4,11 +4,25 @@ class PostsController < ApplicationController
   before_action :check_permissions, only: [:edit, :update]
 
   def index
+    # uses two-parameters sorting via an array
+    # negating the parameter values reverses sort order
     @posts = Post.all.sort_by { |post| [-post.votes_count, -post.updated_at.to_i] }
+
+    respond_to do |format|
+      format.json { render json: @posts }
+      format.xml { render xml: @posts }
+      format.html
+    end
   end
 
   def show
     @comment = Comment.new
+
+    respond_to do |format|
+      format.json { render json: @post }
+      format.xml { render xml: @post }
+      format.html
+    end
   end
 
   def new
