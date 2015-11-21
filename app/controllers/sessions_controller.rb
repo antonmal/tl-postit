@@ -50,6 +50,8 @@ class SessionsController < ApplicationController
   end
 
   def pin
+    redirect_to root_path, alert: 'You cannot do this.' unless session[:two_factor_id] && !session[:two_factor_id].nil?
+
     if request.post?
       @user = User.find(session[:two_factor_id])
       if params[:pin] == @user.pin
