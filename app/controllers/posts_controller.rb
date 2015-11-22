@@ -4,9 +4,10 @@ class PostsController < ApplicationController
   before_action :check_permissions, only: [:edit, :update]
 
   def index
+    @page = params[:page] || 1
     # uses two-parameters sorting via an array
     # negating the parameter values reverses sort order
-    @posts = Post.all.sort_by { |post| [-post.votes_count, -post.updated_at.to_i] }
+    @posts =  Post.all.limit(3)
 
     respond_to do |format|
       format.json { render json: @posts }
