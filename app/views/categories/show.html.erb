@@ -1,7 +1,7 @@
 <% breadcrumbs = link_to('All posts', posts_path) + " &raquo;  #{@category.name.capitalize}".html_safe %>
 <%= render 'shared/content_title', title: breadcrumbs %>
 
-<% if admin? %>
+<% if logged_in? && admin? %>
   <div class="row">
     <div class="well span6">
       <%= link_to 'Edit category', edit_category_path(@category), class: 'btn btn-warning' %>
