@@ -1,11 +1,17 @@
-<div class="pagination">
-  <ul>
-    <li class="disabled"><a href="#">&laquo;</a></li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a>Collection: <%= collection.size %></li>
-    <li><a href="#">3</a>Page: <%= page %></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&laquo;</a></li>
-  </ul>
-</div>
+<% if @total_pages > 1 %>
+  <div class="pagination">
+    <ul>
+      <li <%= @page == 1 ? "class=disabled" : '' %> >
+        <%= link_to "&laquo;".html_safe, current_url_with(page: @page - 1) %>
+      </li>
+      <% (1..@total_pages).each do |n| %>
+        <li <%= @page == n ? "class=active" : '' %>>
+          <%= link_to n.to_s, current_url_with(page: n) %>
+        </li>
+      <% end %>
+      <li <%= @page == @total_pages ? "class=disabled" : '' %> >
+        <%= link_to "&raquo;".html_safe, current_url_with(page: @page + 1) %>
+      </li>
+    </ul>
+  </div>
+<% end %>

@@ -12,9 +12,7 @@ class Post < ActiveRecord::Base
 
   has_slug :title, on: :create
 
-  default_scope { sorted_by_votes_and_update_at }
-
-  scope :sorted_by_votes_and_update_at, -> {
+  scope :sorted_by_votes, -> {
     joins("LEFT OUTER JOIN votes ON votes.voteable_id = posts.id AND votes.voteable_type = 'Post'")
     .select("posts.*, SUM(CASE votes.vote WHEN 't' THEN 1 WHEN 'f' THEN -1 ELSE 0 END) AS TotalVotes")
     .group("posts.id")

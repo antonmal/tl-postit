@@ -40,5 +40,6 @@
 
 <% if @post.comments(true).any? %>
   <span class="lead"><small>Comments for this post:</small></span>
-  <%= render (@post.comments.all order: 'updated_at DESC') %>
+  <%= render @comments %>
+  <%= render 'shared/pagination', collection: @comments %>
 <% end %>

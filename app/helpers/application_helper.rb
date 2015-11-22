@@ -13,4 +13,12 @@ module ApplicationHelper
   def category_list
     Category.all order: 'name'
   end
+
+  def current_url_with(**options)
+    uri = URI::parse(request.original_url)
+    uri_query_hash = uri.query.nil? ? {} : URI::decode_www_form(uri.query).to_h
+    options = options.map { |k,v| [k.to_s, v.to_s] }.to_h
+    uri_query_hash.update(options)
+    uri.path + '?' + URI::encode_www_form(uri_query_hash)
+  end
 end

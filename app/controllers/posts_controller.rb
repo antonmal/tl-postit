@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
+  PER_PAGE = 3
+
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
   before_action :check_permissions, only: [:edit, :update]
 
   def index
-    @page = params[:page] || 1
-    # uses two-parameters sorting via an array
-    # negating the parameter values reverses sort order
-    @posts =  Post.all.limit(3)
+    @page = (params[:page] || 1).to_i
+    @total_pages = (Post.all.size / PER_PAGE.to_f).ceil
+    @posts =  Post.sorted_by_votes.limit(PER_PAGE).offset((@page - 1) * PER_PAGE)
 
     respond_to do |format|
       format.json { render json: @posts }
@@ -18,6 +19,10 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+
+    @page = (params[:page] || 1).to_i
+    @total_pages = (@post.comments.size / PER_PAGE.to_f).ceil
+    @comments = @post.comments.sorted_by_votes.limit(PER_PAGE).offset((@page - 1) * PER_PAGE)
 
     respond_to do |format|
       format.json { render json: @post }

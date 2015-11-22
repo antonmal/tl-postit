@@ -11,20 +11,26 @@
 </div>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#posts" data-toggle="tab">Posts (<%= @user.posts.size %>)</a></li>
-  <li><a href="#comments" data-toggle="tab">Comments (<%= @user.comments.size %>)</a></li>
+  <li <%= @posts_or_comments == :posts ? 'class=active' : '' %>>
+    <a href="?show=posts">Posts (<%= @user.posts.size %>)</a>
+  </li>
+  <li <%= @posts_or_comments == :comments ? 'class=active' : '' %>>
+    <a href="?show=comments">Comments (<%= @user.comments.size %>)</a>
+  </li>
 </ul>
 
 <div class="tab-content">
-  <div id="posts" class="tab-pane active">
-    <% if @user.posts.any? %>
-      <%= render @user.posts %>
+  <div id="posts" class="tab-pane <%= @posts_or_comments == :posts ? 'active' : '' %>">
+    <% if @posts %>
+      <%= render @posts %>
     <% end %>
+    <%= render 'shared/pagination', collection: @posts %>
   </div>
 
-  <div id="comments" class="tab-pane">
-    <% if @user.comments.any? %>
-      <%= render @user.comments, show_post_title: true %>
+  <div id="comments" class="tab-pane <%= @posts_or_comments == :comments ? 'active' : '' %>">
+    <% if @comments %>
+      <%= render @comments, show_post_title: true %>
     <% end %>
+    <%= render 'shared/pagination', collection: @comments %>
   </div>
 </div>
