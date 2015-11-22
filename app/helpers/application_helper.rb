@@ -16,8 +16,8 @@ module ApplicationHelper
 
   def current_url_with(**options)
     uri = URI::parse(request.original_url)
-    uri_query_hash = uri.query.nil? ? {} : Hash[URI::decode_www_form(uri.query)]
-    options = Hash[options.map { |k,v| [k.to_s, v.to_s] }]
+    uri_query_hash = uri.query.nil? ? {} : URI::decode_www_form(uri.query).to_h
+    options = options.map { |k,v| [k.to_s, v.to_s] }.to_h
     uri_query_hash.update(options)
     uri.path + '?' + URI::encode_www_form(uri_query_hash)
   end
