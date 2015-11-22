@@ -9,8 +9,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'twilio-ruby'
 
 # My own gems
-gem 'voteable_ant', path: '/Users/ANTON/dev/my_gems/voteable_ant'
-gem 'sluggable_ant', path: '/Users/ANTON/dev/my_gems/sluggable_ant'
+gem 'voteable_ant', '= 0.0.3'
+gem 'sluggable_ant', '= 0.0.3'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
